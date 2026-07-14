@@ -3,62 +3,89 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Privacy Policy for KararaDesk.">
+  <meta name="description" content="Privacy Policy for the KararaDesk Discord bot, website, subscriptions, and Enterprise portal.">
+  <meta name="theme-color" content="#6d4aff">
   <title>Privacy Policy — KararaDesk</title>
   <link rel="icon" href="assets/kararadesk-logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
+  <script src="site-config.js"></script>
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="index.html"><img class="brand-logo" src="assets/kararadesk-logo.svg" alt="" width="40" height="40"><span>KararaDesk</span></a>
-    <nav class="nav"><a href="index.html">Home</a><a href="terms.html">Terms</a><a href="refund.html">Refunds</a></nav>
+    <nav class="nav"><a href="index.html">Home</a><a href="terms.html">Terms</a><a href="refund.html">Refunds</a><a class="js-support-server" href="support.html" target="_blank" rel="noreferrer">Support</a></nav>
   </header>
   <main class="legal-main">
     <div class="legal-intro">
-      <p class="eyebrow">Legal</p>
+      <p class="eyebrow">Legal • Version 2026-07-15</p>
       <h1>Privacy Policy</h1>
-      <p>Effective date: July 11, 2026</p>
+      <p>Effective date: July 15, 2026</p>
     </div>
     <article class="legal-card">
       <h2>1. Who we are</h2>
-      <p>KararaDesk is an independent digital Discord ticket-management service operated by <strong>Ahmed Karara</strong> (“KararaDesk”, “we”, “us”, or “our”).</p>
+      <p>KararaDesk is an independent Discord ticket-management service operated by <strong>Ahmed Karara</strong> (“KararaDesk”, “we”, “us”, or “our”). This policy explains how information is processed through the website, bot, support server, Enterprise portal, subscriptions, and related infrastructure.</p>
 
       <h2>2. Information we process</h2>
-      <p>Depending on how a Discord server uses the service, we may process:</p>
+      <p>Depending on the features you use, KararaDesk may process:</p>
       <ul>
-        <li>Discord user IDs, server IDs, channel IDs, role IDs, and usernames;</li>
-        <li>ticket messages, close reasons, internal notes, timestamps, and generated transcripts;</li>
-        <li>subscription status, plan, usage totals, and billing-related identifiers;</li>
-        <li>technical logs needed for reliability, security, and troubleshooting.</li>
+        <li>Discord user ID, username, display name, avatar, and account email supplied through authorized OAuth access;</li>
+        <li>Discord server, channel, role, message, interaction, and permission identifiers;</li>
+        <li>ticket messages, attachments or links, close reasons, staff notes, timestamps, logs, and generated transcripts;</li>
+        <li>Enterprise contact name, work email, organization, member count, number of servers, requirements, consent versions, and ticket status;</li>
+        <li>subscription plan, status, usage totals, transaction or subscription identifiers, and billing-event metadata;</li>
+        <li>security, diagnostic, request, deployment, backup, and error logs;</li>
+        <li>a one-way hash derived from an Enterprise request’s network address for rate limiting and abuse prevention.</li>
       </ul>
 
-      <h2>3. Why we process information</h2>
-      <p>We process information to create and manage tickets, route support requests, produce transcripts, enforce plan limits, provide subscription access, prevent abuse, and maintain the service.</p>
+      <h2>3. Information we do not request or store</h2>
+      <p>KararaDesk does not request your Discord password and does not store complete payment-card numbers. Discord OAuth access tokens used to join the official support server are revoked after authorization. You must not submit passwords, bot tokens, webhook URLs, private keys, payment-card information, or other secrets in forms or tickets.</p>
 
-      <h2>4. Payment information</h2>
-      <p>Payments are processed by an external merchant-of-record or payment provider. We do not store complete card numbers. We may receive transaction, customer, and subscription identifiers needed to manage access.</p>
+      <h2>4. Why we process information</h2>
+      <p>We process information to authenticate users, add authorized users to the official support server, enforce Membership Screening, create and manage private tickets, route requests, provide transcripts and logs, synchronize subscriptions, apply plan limits, prevent abuse, secure the service, troubleshoot errors, and comply with legal obligations.</p>
 
-      <h2>5. Data sharing</h2>
-      <p>We share information only when needed to operate the service, comply with law, protect users and the service, or work with infrastructure and payment providers under appropriate terms. We do not sell personal data.</p>
+      <h2>5. Legal bases and consent</h2>
+      <p>Processing may be necessary to provide the service you request, perform a subscription agreement, protect legitimate security and operational interests, comply with legal obligations, or act on your consent. The Enterprise portal records the versions of the Terms and Privacy Policy accepted when a ticket is opened.</p>
 
-      <h2>6. Data retention</h2>
-      <p>Information is kept only for as long as reasonably needed for support operations, subscription management, security, legal obligations, and service continuity. Discord server administrators may control or delete certain ticket data using available bot tools.</p>
+      <h2>6. Discord OAuth and support-server membership</h2>
+      <p>The Enterprise portal requests the Discord OAuth scopes needed to identify your account, receive your authorized account email, and add you to the official support server. Membership Screening remains controlled by Discord and must be completed before your private channel is created. The website uses a short-lived KararaDesk session after OAuth authorization.</p>
 
-      <h2>7. Security</h2>
-      <p>We use reasonable technical and organizational safeguards. No internet service is completely secure, so absolute security cannot be guaranteed.</p>
+      <h2>7. Payments and service providers</h2>
+      <p>Payments are handled by an external merchant-of-record or payment provider. Hosting, domain, infrastructure, monitoring, source-control, and communication providers may process limited information on our behalf. They receive only information reasonably required to provide their services. We do not sell personal data.</p>
 
-      <h2>8. Your choices</h2>
-      <p>Users may contact the server administrators responsible for the Discord server where a ticket was created. For requests involving KararaDesk directly, contact us through the <a href="support.html">official KararaDesk support server</a>.</p>
+      <h2>8. Data retention</h2>
+      <p>Retention depends on the information and operational need. Our standard targets are:</p>
+      <ul>
+        <li>OAuth state and one-time exchange codes: approximately 5–10 minutes;</li>
+        <li>Enterprise browser sessions: up to 24 hours;</li>
+        <li>security and operational logs: normally up to 30 days, unless longer retention is needed to investigate abuse or failure;</li>
+        <li>closed-ticket transcripts: normally up to 180 days, subject to server configuration and legitimate support needs;</li>
+        <li>Enterprise enquiries: normally up to 12 months after the last relevant interaction;</li>
+        <li>subscription and transaction records: for the subscription period and as required for accounting, fraud prevention, disputes, and law;</li>
+        <li>deletion requests: normally completed within 30 days after identity and authority are reasonably verified, unless retention is legally required.</li>
+      </ul>
 
-      <h2>9. Children</h2>
-      <p>The service is not intended for children below the minimum age required to use Discord or enter into applicable agreements in their jurisdiction.</p>
+      <h2>9. Data sharing and disclosure</h2>
+      <p>Information may be disclosed to authorized staff in the relevant Discord server, service providers acting for KararaDesk, payment providers, Discord, or authorities where required by law. We may also disclose limited information to protect users, investigate fraud or abuse, enforce agreements, or defend legal rights.</p>
 
-      <h2>10. Changes</h2>
-      <p>We may update this policy as the service changes. The effective date above will be revised when material updates are published.</p>
+      <h2>10. Security</h2>
+      <p>We use access controls, private Discord channel permissions, short-lived authorization records, hashed sessions, rate limiting, validation, restricted secrets, HTTPS, backups, and operational monitoring. No online system can guarantee absolute security.</p>
 
-      <h2>11. Contact</h2>
-      <p>Contact KararaDesk through the <a href="support.html">official support server</a>.</p>
+      <h2>11. Your choices and requests</h2>
+      <p>You may request access, correction, deletion, or information about KararaDesk-controlled data by opening a privacy request through the <a class="js-support-server" href="support.html" target="_blank" rel="noreferrer">official support server</a>. We may ask you to verify the Discord account, server authority, or other details necessary to protect data from unauthorized requests. Server administrators may separately control ticket content created within their own communities.</p>
+
+      <h2>12. Children</h2>
+      <p>KararaDesk is not intended for anyone below Discord’s minimum age or any higher age required by applicable law. Do not use the service if you are not eligible to use Discord.</p>
+
+      <h2>13. International processing</h2>
+      <p>Service providers and Discord infrastructure may process information in countries other than your own. Where applicable, we rely on contractual, technical, or legal safeguards appropriate to the transfer.</p>
+
+      <h2>14. Changes to this policy</h2>
+      <p>We may update this policy as the service, law, or providers change. The version and effective date will be updated above. Material changes may also be announced on the website or official support server.</p>
+
+      <h2>15. Contact</h2>
+      <p>Privacy questions and data requests can be submitted through the <a class="js-support-server" href="support.html" target="_blank" rel="noreferrer">official KararaDesk support server</a>.</p>
     </article>
   </main>
+  <script src="site.js" defer></script>
 </body>
 </html>

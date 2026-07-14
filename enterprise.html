@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Contact KararaDesk Enterprise sales for custom Discord ticket-management requirements.">
+  <meta name="description" content="Open a private KararaDesk Enterprise sales ticket after signing in with Discord and accepting the support-server rules.">
   <meta name="theme-color" content="#6d4aff">
   <title>Enterprise Sales — KararaDesk</title>
   <link rel="icon" href="assets/kararadesk-logo.svg" type="image/svg+xml">
@@ -19,37 +19,77 @@
   <main class="legal-main enterprise-main">
     <div class="enterprise-layout">
       <section class="enterprise-copy">
-        <p class="eyebrow">Custom plan</p>
+        <p class="eyebrow">Private Discord sales ticket</p>
         <h1>Enterprise support built around your operation.</h1>
-        <p>Tell us how your Discord support team works. We will use your requirements to discuss custom limits, onboarding, branding, and support expectations.</p>
+        <p>Sign in with Discord, join the official KararaDesk server, accept its rules, then open a private ticket where you can speak directly with the Enterprise team.</p>
         <ul class="enterprise-points">
           <li>Custom ticket, panel, and department limits</li>
           <li>Priority implementation and migration support</li>
           <li>Tailored branding and operational guidance</li>
-          <li>Direct sales conversation in the official support server</li>
+          <li>A private Discord channel for the full sales conversation</li>
         </ul>
       </section>
 
-      <section class="enterprise-form-card">
-        <h2>Prepare your enquiry</h2>
-        <p>Submit the form to create a structured message. It is copied to your clipboard so you can paste it into an Enterprise ticket in Discord.</p>
-        <form data-enterprise-form>
-          <label>Name<input name="name" autocomplete="name" required></label>
-          <label>Work email<input name="email" type="email" autocomplete="email" required></label>
-          <label>Company or community<input name="organization" autocomplete="organization" required></label>
-          <div class="form-row">
-            <label>Server members<input name="members" inputmode="numeric" placeholder="e.g. 25,000"></label>
-            <label>Number of servers<input name="servers" inputmode="numeric" placeholder="e.g. 4"></label>
+      <section class="enterprise-form-card" data-enterprise-portal>
+        <div class="enterprise-status" data-enterprise-status aria-live="polite">
+          <span class="status-dot"></span>
+          <div>
+            <strong data-enterprise-status-title>Connect Discord to continue</strong>
+            <p data-enterprise-status-message>KararaDesk will request permission to identify your account and add it to the official support server.</p>
           </div>
-          <label>Main requirements<textarea name="requirements" rows="5" required placeholder="Ticket volume, departments, support team size, integrations, branding, onboarding..."></textarea></label>
-          <button class="button button-full" type="submit">Prepare Enterprise Enquiry</button>
-        </form>
-        <textarea class="enterprise-output" data-enterprise-output hidden readonly aria-label="Prepared Enterprise enquiry"></textarea>
-        <div class="enterprise-result-actions">
-          <button class="button button-ghost" type="button" data-copy-enterprise hidden>Copy enquiry</button>
-          <a class="button js-sales-contact" href="#" target="_blank" rel="noreferrer" data-enterprise-discord hidden>Open Discord Sales</a>
         </div>
-        <p class="form-note">Never include card numbers, passwords, bot tokens, or private keys.</p>
+
+        <div class="enterprise-auth-actions" data-enterprise-auth-actions>
+          <a class="button button-full" href="#" data-enterprise-login>Continue with Discord &amp; join support server</a>
+          <p class="consent-copy">By continuing, you agree to the KararaDesk <a href="terms.html" target="_blank" rel="noreferrer">Terms of Service</a> and <a href="privacy.html" target="_blank" rel="noreferrer">Privacy Policy</a>, and authorize KararaDesk to add your Discord account to the official support server.</p>
+        </div>
+
+        <div class="discord-account-card" data-enterprise-user hidden>
+          <img data-enterprise-avatar src="assets/kararadesk-logo.svg" alt="Discord account avatar" width="52" height="52">
+          <div>
+            <span>Signed in as</span>
+            <strong data-enterprise-username>Discord user</strong>
+          </div>
+          <button class="text-button" type="button" data-enterprise-logout>Sign out</button>
+        </div>
+
+        <div class="screening-card" data-enterprise-screening hidden>
+          <h2>Accept the server rules</h2>
+          <p>Discord requires you to complete Membership Screening before the private ticket can be created. Open the server, accept the rules, then keep this page open. Status is checked automatically.</p>
+          <a class="button button-full js-support-server" href="support.html" target="_blank" rel="noreferrer">Open server &amp; accept rules</a>
+          <span class="checking-label" data-enterprise-checking>Checking membership status…</span>
+        </div>
+
+        <div class="ticket-opened-card" data-enterprise-opened hidden>
+          <span class="opened-check">✓</span>
+          <p class="eyebrow">OPENED TICKET</p>
+          <h2 data-enterprise-ticket-number>Your Enterprise ticket is ready.</h2>
+          <p>Your private channel is available inside the KararaDesk support server.</p>
+          <a class="button button-full" href="#" data-enterprise-ticket-link target="_blank" rel="noreferrer">Open ticket in Discord</a>
+        </div>
+
+        <div data-enterprise-form-shell hidden>
+          <h2>Open your Enterprise ticket</h2>
+          <p>Complete the details below. After creation, you will be sent directly to your private Discord ticket.</p>
+          <form data-enterprise-form novalidate>
+            <label>Name<input name="name" autocomplete="name" minlength="2" maxlength="100" required></label>
+            <label>Work email<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+            <label>Company or community<input name="organization" autocomplete="organization" minlength="2" maxlength="120" required></label>
+            <div class="form-row">
+              <label>Server members<input name="members" inputmode="numeric" min="1" max="1000000000" placeholder="e.g. 25,000" required></label>
+              <label>Number of servers<input name="servers" inputmode="numeric" min="1" max="100000" placeholder="e.g. 4" required></label>
+            </div>
+            <label>Main requirements<textarea name="requirements" rows="6" minlength="20" maxlength="2000" required placeholder="Ticket volume, departments, support team size, integrations, branding, onboarding..."></textarea></label>
+            <label class="honeypot-field" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+            <label class="legal-consent-row">
+              <input name="legalConsent" type="checkbox" required>
+              <span>I accept the current <a href="terms.html" target="_blank" rel="noreferrer">Terms of Service</a> and <a href="privacy.html" target="_blank" rel="noreferrer">Privacy Policy</a>.</span>
+            </label>
+            <button class="button button-full" type="submit" data-enterprise-submit>Open Enterprise Ticket</button>
+          </form>
+          <p class="form-error" data-enterprise-error role="alert" hidden></p>
+          <p class="form-note">Never include card numbers, passwords, bot tokens, webhook URLs, or private keys.</p>
+        </div>
       </section>
     </div>
   </main>
