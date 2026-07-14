@@ -1,3 +1,5 @@
+KararaDesk Website v1.5.2 — Enterprise account controls hotfix
+
 # v1.5.1 Enterprise Account Switching
 
 This release adds working KararaDesk sign-out and a separate Switch Discord account action.

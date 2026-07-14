@@ -356,16 +356,23 @@
     if (switchAccountButton) switchAccountButton.disabled = false;
 
     if (switchAccount && loginLink?.href) {
-      window.location.assign(loginLink.href);
+      const switchUrl = new URL(loginLink.href);
+      switchUrl.searchParams.set("switch_account", "1");
+      switchUrl.searchParams.set("fresh", String(Date.now()));
+      window.location.assign(switchUrl.toString());
     }
   }
 
-  logoutButton?.addEventListener("click", async () => {
-    await signOut();
-  });
+  portal.addEventListener("click", async (event) => {
+    const logoutTarget = event.target.closest("[data-enterprise-logout]");
+    const switchTarget = event.target.closest("[data-enterprise-switch-account]");
 
-  switchAccountButton?.addEventListener("click", async () => {
-    await signOut({ switchAccount: true });
+    if (!logoutTarget && !switchTarget) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    await signOut({ switchAccount: Boolean(switchTarget) });
   });
 
   form?.addEventListener("submit", async (event) => {
