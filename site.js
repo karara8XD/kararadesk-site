@@ -83,6 +83,7 @@
   const statusBox = portal.querySelector("[data-enterprise-status]");
   const authActions = portal.querySelector("[data-enterprise-auth-actions]");
   const loginLink = portal.querySelector("[data-enterprise-login]");
+  const otherAccountLink = portal.querySelector("[data-enterprise-login-other]");
   const userCard = portal.querySelector("[data-enterprise-user]");
   const avatar = portal.querySelector("[data-enterprise-avatar]");
   const username = portal.querySelector("[data-enterprise-username]");
@@ -307,6 +308,10 @@
     hideAllWorkflowPanels();
     if (authActions) authActions.hidden = false;
     if (userCard) userCard.hidden = true;
+    if (username) username.textContent = "Discord user";
+    if (avatar) avatar.src = "assets/kararadesk-logo.svg";
+    if (logoutButton) logoutButton.disabled = false;
+    if (switchAccountButton) switchAccountButton.disabled = false;
     setStatus("Connect Discord to continue", message, "default");
   }
 
@@ -321,49 +326,72 @@
     await loadCurrentUser();
   }
 
-  function configureLoginLink() {
-    if (!loginLink || !apiBase) return;
+  function buildLoginUrl({ switchAccount = false } = {}) {
+    if (!apiBase) return "#";
     const returnUrl = `${window.location.origin}${window.location.pathname}`;
-    loginLink.href = `${apiBase}${apiPrefix}/oauth/start?return_to=${encodeURIComponent(returnUrl)}`;
+    const url = new URL(`${apiBase}${apiPrefix}/oauth/start`);
+    url.searchParams.set("return_to", returnUrl);
+    if (switchAccount) {
+      url.searchParams.set("switch_account", "1");
+      url.searchParams.set("fresh", String(Date.now()));
+    }
+    return url.toString();
   }
 
-  configureLoginLink();
+  function configureLoginLinks() {
+    if (loginLink) loginLink.href = buildLoginUrl();
+    if (otherAccountLink) otherAccountLink.href = buildLoginUrl({ switchAccount: true });
+  }
 
-  async function signOut({ switchAccount = false } = {}) {
-    const previousSession = session;
+  configureLoginLinks();
+
+  function revokeSessionToken(token) {
+    if (!token || !apiBase) return;
+    const headers = new Headers({
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`
+    });
+
+    // keepalive allows the revocation request to finish even when account
+    // switching immediately navigates the browser to Discord.
+    void fetch(`${apiBase}${apiPrefix}/session/logout`, {
+      method: "POST",
+      headers,
+      keepalive: true
+    }).catch(() => null);
+  }
+
+  function signOut({ switchAccount = false } = {}) {
+    const previousToken = session?.token || "";
 
     if (logoutButton) logoutButton.disabled = true;
     if (switchAccountButton) switchAccountButton.disabled = true;
 
-    try {
-      if (previousSession?.token) {
-        await apiRequest("/session/logout", { method: "POST" });
-      }
-    } catch {
-      // Local logout must still succeed if the API is temporarily unavailable.
-    }
-
+    // Update the page immediately. A slow network must never leave stale
+    // account controls visible after the user has chosen to sign out.
     clearSession();
     form?.reset();
     showError("");
     renderLoggedOut(
       switchAccount
-        ? "KararaDesk signed out. On Discord, choose ‘Not you?’ to continue with another account."
-        : "You have signed out of KararaDesk."
+        ? "Signed out. On Discord, choose ‘Not you?’ to continue with another account."
+        : "You have signed out of KararaDesk. Choose an account to continue."
     );
 
-    if (logoutButton) logoutButton.disabled = false;
-    if (switchAccountButton) switchAccountButton.disabled = false;
+    revokeSessionToken(previousToken);
 
-    if (switchAccount && loginLink?.href) {
-      const switchUrl = new URL(loginLink.href);
-      switchUrl.searchParams.set("switch_account", "1");
-      switchUrl.searchParams.set("fresh", String(Date.now()));
-      window.location.assign(switchUrl.toString());
+    if (switchAccount) {
+      window.location.assign(buildLoginUrl({ switchAccount: true }));
     }
   }
 
-  portal.addEventListener("click", async (event) => {
+  otherAccountLink?.addEventListener("click", (event) => {
+    event.preventDefault();
+    clearSession();
+    window.location.assign(buildLoginUrl({ switchAccount: true }));
+  });
+
+  portal.addEventListener("click", (event) => {
     const logoutTarget = event.target.closest("[data-enterprise-logout]");
     const switchTarget = event.target.closest("[data-enterprise-switch-account]");
 
@@ -372,7 +400,7 @@
     event.preventDefault();
     event.stopPropagation();
 
-    await signOut({ switchAccount: Boolean(switchTarget) });
+    signOut({ switchAccount: Boolean(switchTarget) });
   });
 
   form?.addEventListener("submit", async (event) => {

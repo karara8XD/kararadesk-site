@@ -53,3 +53,12 @@ The website's **Add KararaDesk** buttons are configured. For the button on the b
 
 - Do not publish Discord bot tokens, Lemon Squeezy keys, webhook secrets, passwords, or private keys in this repository.
 - Legal pages are a practical starting point, not a substitute for professional legal review.
+
+
+## v1.5.3 account-state polish
+
+- Sign out hides the signed-in card immediately, without waiting for the network.
+- The server session is revoked in the background using a keepalive request.
+- Logged-out users get both **Continue with Discord** and **Use another Discord account**.
+- Stale username/avatar data is cleared on sign out.
+- CSS and JavaScript URLs use `?v=1.5.3` to prevent mixed cached releases.
