@@ -87,6 +87,7 @@
   const avatar = portal.querySelector("[data-enterprise-avatar]");
   const username = portal.querySelector("[data-enterprise-username]");
   const logoutButton = portal.querySelector("[data-enterprise-logout]");
+  const switchAccountButton = portal.querySelector("[data-enterprise-switch-account]");
   const screeningCard = portal.querySelector("[data-enterprise-screening]");
   const checkingLabel = portal.querySelector("[data-enterprise-checking]");
   const formShell = portal.querySelector("[data-enterprise-form-shell]");
@@ -328,9 +329,43 @@
 
   configureLoginLink();
 
-  logoutButton?.addEventListener("click", () => {
+  async function signOut({ switchAccount = false } = {}) {
+    const previousSession = session;
+
+    if (logoutButton) logoutButton.disabled = true;
+    if (switchAccountButton) switchAccountButton.disabled = true;
+
+    try {
+      if (previousSession?.token) {
+        await apiRequest("/session/logout", { method: "POST" });
+      }
+    } catch {
+      // Local logout must still succeed if the API is temporarily unavailable.
+    }
+
     clearSession();
-    window.location.reload();
+    form?.reset();
+    showError("");
+    renderLoggedOut(
+      switchAccount
+        ? "KararaDesk signed out. On Discord, choose ‘Not you?’ to continue with another account."
+        : "You have signed out of KararaDesk."
+    );
+
+    if (logoutButton) logoutButton.disabled = false;
+    if (switchAccountButton) switchAccountButton.disabled = false;
+
+    if (switchAccount && loginLink?.href) {
+      window.location.assign(loginLink.href);
+    }
+  }
+
+  logoutButton?.addEventListener("click", async () => {
+    await signOut();
+  });
+
+  switchAccountButton?.addEventListener("click", async () => {
+    await signOut({ switchAccount: true });
   });
 
   form?.addEventListener("submit", async (event) => {
