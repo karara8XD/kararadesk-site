@@ -47,6 +47,54 @@
     link.href = installUrl;
   });
 
+  const billingApiBase = String(
+    config.billingApiBaseUrl || config.enterpriseApiBaseUrl || ""
+  ).replace(/\/$/, "");
+  const billingApiPrefix = String(
+    config.billingApiPathPrefix || "/api/billing"
+  ).replace(/\/$/, "");
+
+  document.querySelectorAll("[data-billing-plan]").forEach((link) => {
+    const plan = String(link.dataset.billingPlan || "").trim().toLowerCase();
+
+    if (billingApiBase && (plan === "pro" || plan === "business")) {
+      link.href = `${billingApiBase}${billingApiPrefix}/checkout/start?plan=${encodeURIComponent(plan)}`;
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
+      return;
+    }
+
+    link.href = "#pricing";
+    link.setAttribute("aria-disabled", "true");
+  });
+
+  const billingFeedback = document.querySelector("[data-billing-feedback]");
+  if (billingFeedback) {
+    const pageUrl = new URL(window.location.href);
+    const billingError = pageUrl.searchParams.get("billing_error");
+    const checkoutSuccess = pageUrl.searchParams.get("checkout") === "success";
+    const selectedPlan = String(pageUrl.searchParams.get("plan") || "").trim();
+    const title = billingFeedback.querySelector("[data-billing-feedback-title]");
+    const message = billingFeedback.querySelector("[data-billing-feedback-message]");
+
+    if (billingError) {
+      billingFeedback.hidden = false;
+      billingFeedback.dataset.state = "error";
+      if (title) title.textContent = "Checkout could not continue";
+      if (message) message.textContent = billingError;
+    } else if (checkoutSuccess) {
+      billingFeedback.hidden = false;
+      billingFeedback.dataset.state = "success";
+      if (title) title.textContent = "Payment completed";
+      if (message) {
+        const planLabel = selectedPlan
+          ? `${selectedPlan.charAt(0).toUpperCase()}${selectedPlan.slice(1)} `
+          : "";
+        message.textContent = `Your ${planLabel}subscription is being synchronized with the selected Discord server. This normally finishes within a few seconds.`;
+      }
+    }
+  }
+
   document.querySelectorAll(".js-support-server").forEach((link) => {
     link.href = supportUrl;
     if (!hasPublicInvite) {

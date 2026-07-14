@@ -62,3 +62,14 @@ The website's **Add KararaDesk** buttons are configured. For the button on the b
 - Logged-out users get both **Continue with Discord** and **Use another Discord account**.
 - Stale username/avatar data is cleared on sign out.
 - CSS and JavaScript URLs use `?v=1.5.3` to prevent mixed cached releases.
+
+## v1.6.0 paid-plan flow
+
+Pro and Business buttons now use the KararaDesk billing API. Discord installs the bot through an authorization-code flow, returns to the existing OAuth callback, and the API redirects the browser to a server-linked Lemon Squeezy checkout.
+
+Billing health check:
+
+```text
+https://kararadesk.duckdns.org/api/enterprise/billing/health
+```
+

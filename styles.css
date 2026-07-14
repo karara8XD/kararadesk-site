@@ -495,3 +495,24 @@ h3 { margin-bottom: 10px; font-size: 1.2rem; }
 .account-switch-help strong {
   color: var(--text);
 }
+
+
+/* v1.6.0 install-to-checkout billing flow */
+.billing-feedback {
+  margin: 0 0 22px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,.035);
+}
+.billing-feedback strong { display: block; margin-bottom: 3px; }
+.billing-feedback p { margin: 0; color: var(--muted); }
+.billing-feedback[data-state="success"] {
+  border-color: rgba(94,224,160,.4);
+  background: rgba(94,224,160,.08);
+}
+.billing-feedback[data-state="error"] {
+  border-color: rgba(255,112,112,.4);
+  background: rgba(255,112,112,.08);
+}
+.billing-feedback[data-state="error"] strong { color: #ffb0b0; }

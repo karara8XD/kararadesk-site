@@ -7,6 +7,8 @@ window.KARARADESK_CONFIG = Object.freeze({
 
   enterpriseApiBaseUrl: "https://kararadesk.duckdns.org",
   enterpriseApiPathPrefix: "/api/enterprise",
+  billingApiBaseUrl: "https://kararadesk.duckdns.org",
+  billingApiPathPrefix: "/api/enterprise/billing",
   termsVersion: "2026-07-15",
   privacyVersion: "2026-07-15"
 });

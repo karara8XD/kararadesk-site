@@ -11,8 +11,8 @@
   <meta property="og:image" content="assets/kararadesk-logo.svg">
   <title>KararaDesk — Discord Support, Organized</title>
   <link rel="icon" href="assets/kararadesk-logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=1.5.3">
-  <script src="site-config.js?v=1.5.3"></script>
+  <link rel="stylesheet" href="styles.css?v=1.6.0">
+  <script src="site-config.js?v=1.6.0"></script>
 </head>
 <body>
   <header class="site-header">
@@ -110,6 +110,11 @@
         <p>Prices are listed in USD. Taxes may be added at checkout depending on location.</p>
       </div>
 
+      <div class="billing-feedback" data-billing-feedback hidden role="status" aria-live="polite">
+        <strong data-billing-feedback-title></strong>
+        <p data-billing-feedback-message></p>
+      </div>
+
       <div class="pricing-grid">
         <article class="price-card">
           <p class="plan-name">Free</p>
@@ -124,7 +129,7 @@
           <p class="plan-name">Pro</p>
           <p class="price"><span>$</span>4.99<small>/month</small></p>
           <p class="plan-description">For growing communities and active teams.</p>
-          <a class="button button-full js-discord-install" href="#" target="_blank" rel="noreferrer">Add &amp; upgrade to Pro</a>
+          <a class="button button-full" href="#" data-billing-plan="pro">Add &amp; upgrade to Pro</a>
           <ul><li>3 ticket panels</li><li>10 departments</li><li>500 tickets per month</li><li>3 open tickets per user</li><li>Internal staff notes</li></ul>
         </article>
 
@@ -132,7 +137,7 @@
           <p class="plan-name">Business</p>
           <p class="price"><span>$</span>9.99<small>/month</small></p>
           <p class="plan-description">For established support operations.</p>
-          <a class="button button-full button-ghost js-discord-install" href="#" target="_blank" rel="noreferrer">Add &amp; upgrade to Business</a>
+          <a class="button button-full button-ghost" href="#" data-billing-plan="business">Add &amp; upgrade to Business</a>
           <ul><li>10 ticket panels</li><li>25 departments</li><li>2,500 tickets per month</li><li>5 open tickets per user</li><li>Custom branding</li><li>Priority support</li></ul>
         </article>
 
@@ -144,7 +149,7 @@
           <ul><li>Unlimited plan limits</li><li>Custom branding</li><li>Priority support</li><li>Tailored onboarding</li></ul>
         </article>
       </div>
-      <p class="pricing-note">No download is required. Add KararaDesk to your server, then run <strong>/plan upgrade</strong> to open a secure checkout linked to that Discord server.</p>
+      <p class="pricing-note">Choose Pro or Business, select your Discord server, and KararaDesk will continue automatically to a secure checkout linked to that server. You can still use <strong>/plan upgrade</strong> from Discord at any time.</p>
     </section>
 
     <section class="section" id="faq">
@@ -182,6 +187,6 @@
     <p class="copyright">© <span data-current-year></span> KararaDesk. KararaDesk is not affiliated with Discord Inc.</p>
   </footer>
 
-  <script src="site.js?v=1.5.3" defer></script>
+  <script src="site.js?v=1.6.0" defer></script>
 </body>
 </html>
