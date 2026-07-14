@@ -1,34 +1,49 @@
-# Deploy KararaDesk website with GitHub Pages
+# Deploy the KararaDesk website with GitHub Pages
 
-This folder is a complete static website. No npm install is required.
+This is a complete static website. No `npm install` or build step is required.
 
-## Option A — put it in your existing repository
+## 1. Discord support-server invite
 
-1. Copy all files into a folder named `docs` in the root of `discord-ticket-saas-bot`.
-2. Commit and push the new `docs` folder.
-3. On GitHub open the repository.
-4. Go to **Settings → Pages**.
-5. Under **Build and deployment**, choose **Deploy from a branch**.
-6. Select branch `main` and folder `/docs`, then save.
-7. Wait for GitHub Pages to publish the URL.
+The permanent KararaDesk support-server invite is already configured in `site-config.js`:
 
-## Before public launch
+```js
+supportServerInviteUrl: "https://discord.gg/UKCZvMCy7N",
+```
 
-Replace the temporary GitHub profile contact links with your final support email or Discord support server.
-Replace the disabled checkout buttons with the final Lemon Squeezy/Stripe checkout URLs after products are created.
-Review the legal pages and business name for exact legal accuracy.
+The same value automatically powers every **Support Server** and **Enterprise Sales** Discord button across the website. The application ID, support-server ID, owner Discord user ID, and bot-install permissions are also configured.
 
+## 2. Publish with GitHub Pages
 
-## Suggested public URL
+1. Replace the current files in the `kararadesk-site` repository with this folder's contents.
+2. Commit and push the changes to the default branch.
+3. In GitHub, open **Settings → Pages**.
+4. Under **Build and deployment**, choose **Deploy from a branch**.
+5. Select the default branch and `/ (root)`, then save.
+6. Wait for GitHub Pages to publish the update.
 
-When GitHub Pages is enabled from the `/docs` folder, the address will usually be:
+## Included improvements
 
-`https://karara8xd.github.io/discord-ticket-saas-bot/`
+- Branded KararaDesk bot icon and favicon.
+- Updated Discord install URL using guild installation context.
+- Official Support Server buttons in the header, hero, support banner, FAQ, CTA, and footer.
+- Dedicated Support Server page.
+- Dedicated Enterprise Sales page with a structured enquiry builder.
+- Enterprise no longer directs visitors to GitHub.
+- Centralized Discord URLs in `site-config.js`.
+- Updated legal-page contact wording.
+- Mobile-responsive layout and social metadata.
 
-Use the exact published URL in your payment-provider onboarding form.
+## Developer Portal setting required for Add App
 
-## Important before publishing
+The website's **Add KararaDesk** buttons are configured. For the button on the bot's Discord profile to work too, set the application in Discord Developer Portal to:
 
-- Confirm that the operator name `Ahmed Karara` matches the English spelling used in your official identity and payment account.
-- Replace the GitHub contact link with a dedicated support email or Discord support server when available.
-- The legal pages are a practical starting point, not a substitute for professional legal review.
+- Installation Context: **Guild Install enabled**
+- Install Link: **Discord Provided Link**
+- Scopes: `bot`, `applications.commands`
+- Public Bot: **enabled**
+- Requires OAuth2 Code Grant: **disabled**
+
+## Important
+
+- Do not publish Discord bot tokens, Lemon Squeezy keys, webhook secrets, passwords, or private keys in this repository.
+- Legal pages are a practical starting point, not a substitute for professional legal review.

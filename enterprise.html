@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact KararaDesk Enterprise sales for custom Discord ticket-management requirements.">
+  <meta name="theme-color" content="#6d4aff">
+  <title>Enterprise Sales — KararaDesk</title>
+  <link rel="icon" href="assets/kararadesk-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site-config.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/kararadesk-logo.svg" alt="" width="40" height="40"><span>KararaDesk</span></a>
+    <nav class="nav"><a href="index.html">Home</a><a href="index.html#pricing">Pricing</a><a class="js-support-server" href="support.html" target="_blank" rel="noreferrer">Support Server</a></nav>
+  </header>
+
+  <main class="legal-main enterprise-main">
+    <div class="enterprise-layout">
+      <section class="enterprise-copy">
+        <p class="eyebrow">Custom plan</p>
+        <h1>Enterprise support built around your operation.</h1>
+        <p>Tell us how your Discord support team works. We will use your requirements to discuss custom limits, onboarding, branding, and support expectations.</p>
+        <ul class="enterprise-points">
+          <li>Custom ticket, panel, and department limits</li>
+          <li>Priority implementation and migration support</li>
+          <li>Tailored branding and operational guidance</li>
+          <li>Direct sales conversation in the official support server</li>
+        </ul>
+      </section>
+
+      <section class="enterprise-form-card">
+        <h2>Prepare your enquiry</h2>
+        <p>Submit the form to create a structured message. It is copied to your clipboard so you can paste it into an Enterprise ticket in Discord.</p>
+        <form data-enterprise-form>
+          <label>Name<input name="name" autocomplete="name" required></label>
+          <label>Work email<input name="email" type="email" autocomplete="email" required></label>
+          <label>Company or community<input name="organization" autocomplete="organization" required></label>
+          <div class="form-row">
+            <label>Server members<input name="members" inputmode="numeric" placeholder="e.g. 25,000"></label>
+            <label>Number of servers<input name="servers" inputmode="numeric" placeholder="e.g. 4"></label>
+          </div>
+          <label>Main requirements<textarea name="requirements" rows="5" required placeholder="Ticket volume, departments, support team size, integrations, branding, onboarding..."></textarea></label>
+          <button class="button button-full" type="submit">Prepare Enterprise Enquiry</button>
+        </form>
+        <textarea class="enterprise-output" data-enterprise-output hidden readonly aria-label="Prepared Enterprise enquiry"></textarea>
+        <div class="enterprise-result-actions">
+          <button class="button button-ghost" type="button" data-copy-enterprise hidden>Copy enquiry</button>
+          <a class="button js-sales-contact" href="#" target="_blank" rel="noreferrer" data-enterprise-discord hidden>Open Discord Sales</a>
+        </div>
+        <p class="form-note">Never include card numbers, passwords, bot tokens, or private keys.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer compact-footer">
+    <p>© <span data-current-year></span> KararaDesk.</p>
+    <div class="footer-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refund.html">Refunds</a></div>
+  </footer>
+  <script src="site.js" defer></script>
+</body>
+</html>
